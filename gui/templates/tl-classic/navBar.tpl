@@ -11,20 +11,22 @@ title bar + menu
              search_testcase,title_results,title_user_mgmt,full_text_search"}
 {$cfg_section=$smarty.template|replace:".tpl":""}
 {config_load file="input_dimensions.conf" section=$cfg_section}
+{include file="bootstrap.inc.tpl"}
 
 {include file="inc_head.tpl" openHead="yes"}
 </head>
 <body style="min-width: 800px;">
 <div style="float:left; height: 100%;">
   <a href="index.php" target="_parent">
-  <img alt="Company logo" title="logo" src="{$smarty.const.TL_THEME_IMG_DIR}{$tlCfg->logo_navbar}" /></a>
+  <img style="padding: 20px 0 0 0" alt="Company logo" title="logo" src="{$smarty.const.TL_THEME_IMG_DIR}{$tlCfg->logo_navbar}" /></a>
 </div>
-  
+
 <div class="menu_title">
 
   <span class="bold">{$gui->whoami|escape}</span>
   <span>&nbsp;&nbsp;&nbsp;<a href='lib/usermanagement/userInfo.php' target="mainframe" accesskey="i"
-          tabindex="6"><img src="{$tlImages.account}" title="{$labels.title_edit_personal_data}"></a>
+          tabindex="6">
+      <img src="{$tlImages.account}" title="{$labels.title_edit_personal_data}"></a>
         <a href="{$gui->logout}" target="_parent" accesskey="q">
         <img src="{$tlImages.logout}" title="{$labels.link_logout}"></a>
   </span>
@@ -35,7 +37,7 @@ title bar + menu
   <div style="display: inline; float: right;">
     <form style="display:inline" name="productForm" action="lib/general/navBar.php?viewer={$gui->viewer}" method="get">
        {$labels.testproject}
-      <select style="font-size: 80%;position:relative; top:-1px;" name="testproject" onchange="this.form.submit();">
+      <select style="font-size: 100%;position:relative; top:-1px;" name="testproject" onchange="this.form.submit();">
           {foreach key=tproject_id item=tproject_name from=$gui->TestProjects}
           <option value="{$tproject_id}" title="{$tproject_name|escape}"
             {if $tproject_id == $gui->tprojectID} selected="selected" {/if}>
@@ -51,7 +53,7 @@ title bar + menu
   {if $gui->grants->view_testcase_spec == "yes"}
     <form style="display:inline" target="mainframe" name="searchTC" id="searchTC"
           action="lib/testcases/archiveData.php" method="get">
-    <input style="font-size: 80%; position:relative; top:-1px;" type="text" size="{$gui->searchSize}"
+    <input style="font-size: 100%; position:relative; top:-1px;" type="text" size="{$gui->searchSize}"
            title="{$labels.search_testcase}" name="targetTestCase" value="{$gui->tcasePrefix}" />
 
       {* useful to avoid a call to method to get test case prefix in called page *}
@@ -61,7 +63,7 @@ title bar + menu
     <input type="hidden" id="caller" name="caller" value="navBar" />
     <img src="{$tlImages.magnifier}"
          title="{$labels.search_testcase}" alt="{$labels.search_testcase}"
-         onclick="jQuery('#searchTC').submit()" class="clickable" 
+         onclick="jQuery('#searchTC').submit()" class="clickable"
          style="position:relative; top:2px;" />
     <input type="hidden" name="edit" value="testcase"/>
     <input type="hidden" name="allow_edit" value="0"/>
@@ -74,14 +76,11 @@ title bar + menu
     <input type="hidden" name="caller" value="navBar">
     <input type="hidden" name="tproject_id" value="{$gui->tproject_id}">
 
-    <input style="font-size: 80%; position:relative; top:-1px;" type="text" size="50"
-           title="{$labels.full_text_search}" name="target" value="" />
+    <input style="font-size: 100%; position:relative; top:-1px;" type="text" size="50"
+           title="{$labels.full_text_search}" name="target" value=""/>
+    <style>
+    </style>
 
-    <img src="{$tlImages.magnifier}"
-         title="{$labels.full_text_search}" alt="{$labels.full_text_search}"
-         onclick="jQuery('#fullTextSearch').submit()" class="clickable" 
-         style="position:relative; top:2px;" />
-    </form>
   {/if}
 
 {/if}
@@ -94,7 +93,7 @@ title bar + menu
 	{/foreach}
 	</div>
 {/if}
-  
+
 {if $gui->updateMainPage == 1}
   <script type="text/javascript">
   parent.mainframe.location = "{$basehref}lib/general/mainPage.php";
