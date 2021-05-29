@@ -291,7 +291,9 @@ input[type="button"],
 input[type="submit"],
 input[type="password"],
 input[type="reset"],
-input[type="text"],
+input[type="text"]{
+	font-size: medium;
+},
 select,
 textarea,
 button {
