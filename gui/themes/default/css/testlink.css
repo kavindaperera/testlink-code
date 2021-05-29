@@ -15,7 +15,7 @@ html, body {
 body, body.testlink {
 	background-color: white !important;
 	font-family: 	'Trebuchet MS', Arial, Verdana, sans-serif;
-	font-size: 		small;
+	font-size: 		medium; /*small*/
 	margin:			0px;
 	padding:		0px;
 	height:100%;
@@ -106,7 +106,7 @@ h1, h1.title {
 	margin:			0px 0px 4px 0px;
 	padding: 		3px;
 	text-align: 	left;
-	font-size:		85%;
+	font-size:		medium;
 	font-weight:    bold;
 }
 
@@ -222,6 +222,7 @@ div.workBack {
 /* .label is used to magnify label for active objects */
 .bold, .label {
 	font-weight:    bold;
+	font-size: medium;
 }
 
 .italic {
