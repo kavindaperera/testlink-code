@@ -97,7 +97,7 @@ define('TL_ABS_PATH', dirname(__FILE__) . DIRECTORY_SEPARATOR);
 $tlCfg->testlinkdotorg = 'http://www.testlink.org';
 
 /** GUI themes (base for CSS and images)- modify if you create own one */
-$tlCfg->theme_dir = 'gui/themes/default/';
+$tlCfg->theme_dir = 'gui/themes/grayskin/';
 
 /** Dir for compiled templates */
 $tlCfg->temp_dir = TL_ABS_PATH . 'gui' . DIRECTORY_SEPARATOR . 
