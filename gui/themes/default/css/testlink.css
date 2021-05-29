@@ -293,7 +293,7 @@ input[type="password"],
 input[type="reset"],
 input[type="text"]{
 	font-size: medium;
-},
+}
 select,
 textarea,
 button {

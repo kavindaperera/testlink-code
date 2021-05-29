@@ -14,7 +14,7 @@
 {$managerURL="lib/project/projectEdit.php"}
 {$editAction="$managerURL?doAction=edit&tprojectID="}
 
-{lang_get var="labels" 
+{lang_get var="labels"
   s='show_event_history,th_active,cancel,info_failed_loc_prod,invalid_query,
   create_from_existent_tproject,opt_no,caption_edit_tproject,caption_new_tproject,name,
   title_testproject_management,testproject_enable_priority, testproject_enable_automation,
@@ -27,6 +27,7 @@
 
 {include file="inc_head.tpl" openHead="yes" jsValidate="yes" editorType=$editorType}
 {include file="inc_del_onclick.tpl"}
+{include file="bootstrap.inc.tpl"}
 
 {if $gui_cfg->testproject_coloring neq 'none'}
   {include file="inc_jsPicker.tpl"}
@@ -74,7 +75,7 @@ function manageTracker(selectOID,targetOID)
   if (so.selectedIndex == 0){
     to.checked = false;
     to.disabled = true;
-  }  
+  }
 
 }
 
@@ -87,8 +88,8 @@ manageTracker('code_tracker_id','code_tracker_enabled');">
   {$main_descr|escape}  {$tlCfg->gui_title_separator_1}
   {$caption|escape}
   {if $mgt_view_events eq "yes" and $gui->tprojectID}
-    <img style="margin-left:5px;" class="clickable" src="{$tlImages.help}" 
-           onclick="showEventHistoryFor('{$gui->tprojectID}','testprojects')" 
+    <img style="margin-left:5px;" class="clickable" src="{$tlImages.help}"
+           onclick="showEventHistoryFor('{$gui->tprojectID}','testprojects')"
            alt="{$labels.show_event_history}" title="{$labels.show_event_history}"/>
   {/if}
 </h1>
@@ -103,35 +104,43 @@ manageTracker('code_tracker_id','code_tracker_enabled');">
     <form name="edit_testproject" id="edit_testproject"
           method="post" action="{$managerURL}"
           onSubmit="javascript:return validateForm(this);">
-    <table id="item_view" class="common" style="width:100%; padding:3px;">
+    <table id="item_view" class="common" style="width:100%; padding:3px;margin-bottom: 0px;">
 
       {if $gui->tprojectID eq 0}
         {if $gui->testprojects != ''}
        <tr>
          <td>{$labels.create_from_existent_tproject}</td>
-         <td>
-           <select name="copy_from_tproject_id">
+         <td class="form-row" style="padding: 0 0 0 0;">
+           <div class="form-group col-md-1" style="padding-left: 0">
+           <select class="form-control" name="copy_from_tproject_id">
            <option value="0">{$labels.opt_no}</option>
            {foreach item=testproject from=$gui->testprojects}
              <option value="{$testproject.id}">{$testproject.name|escape}</option>
            {/foreach}
            </select>
+           </div>
          </td>
        </tr>
        {/if}
       {/if}
       <tr>
         <td>{$labels.name} *</td>
-        <td><input type="text" name="tprojectName" size="{#TESTPROJECT_NAME_SIZE#}"
+        <td class="form-row" style="padding: 0 0 0 0;">
+          <div class="form-group col-md-6" style="padding-left: 0; height: 30px;">
+          <input class="form-control" type="text" name="tprojectName" size="{#TESTPROJECT_NAME_SIZE#}"
             value="{$gui->tprojectName|escape}" maxlength="{#TESTPROJECT_NAME_MAXLEN#}" required />
             {include file="error_icon.tpl" field="tprojectName"}
+          </div>
         </td>
       </tr>
       <tr>
         <td>{$labels.testproject_prefix} *</td>
-        <td><input type="text" name="tcasePrefix" size="{#TESTCASE_PREFIX_SIZE#}"
+        <td class="form-row" style="padding: 0 0 0 0;">
+          <div class="form-group col-md-6" style="padding-left: 0; height: 30px;">
+          <input class="form-control" type="text" name="tcasePrefix" size="{#TESTCASE_PREFIX_SIZE#}"
                    value="{$gui->tcasePrefix|escape}" maxlength="{#TESTCASE_PREFIX_MAXLEN#}" required />
             {include file="error_icon.tpl" field="tcasePrefix"}
+          </div>
         </td>
       </tr>
       <tr>
@@ -157,28 +166,28 @@ manageTracker('code_tracker_id','code_tracker_enabled');">
       </tr>
       <tr>
         <td></td><td>
-            <input type="checkbox" name="optReq" 
+            <input class="form-check-input" type="checkbox" name="optReq"
                 {if $gui->projectOptions->requirementsEnabled} checked="checked"  {/if} />
           {$labels.testproject_enable_requirements}
         </td>
       </tr>
       <tr>
         <td></td><td>
-          <input type="checkbox" name="optPriority" 
+          <input class="form-check-input" type="checkbox" name="optPriority"
               {if $gui->projectOptions->testPriorityEnabled} checked="checked"  {/if} />
           {$labels.testproject_enable_priority}
         </td>
       </tr>
       <tr>
         <td></td><td>
-          <input type="checkbox" name="optAutomation" 
+          <input class="form-check-input" type="checkbox" name="optAutomation"
                 {if $gui->projectOptions->automationEnabled} checked="checked" {/if} />
           {$labels.testproject_enable_automation}
         </td>
       </tr>
       <tr>
         <td></td><td>
-          <input type="checkbox" name="optInventory" 
+          <input class="form-check-input" type="checkbox" name="optInventory"
                 {if $gui->projectOptions->inventoryEnabled} checked="checked" {/if} />
           {$labels.testproject_enable_inventory}
         </td>
@@ -196,7 +205,7 @@ manageTracker('code_tracker_id','code_tracker_enabled');">
         <tr>
           <td></td>
           <td>
-            <input type="checkbox" id="issue_tracker_enabled"
+            <input class="form-check-input" type="checkbox" id="issue_tracker_enabled"
                    name="issue_tracker_enabled" {if $gui->issue_tracker_enabled == 1} checked="checked" {/if} />
             {$labels.th_active}
           </td>
@@ -209,8 +218,8 @@ manageTracker('code_tracker_id','code_tracker_enabled');">
              onchange="manageTracker('issue_tracker_id','issue_tracker_enabled');">
              <option value="0">&nbsp;</option>
              {foreach item=issue_tracker from=$gui->issueTrackers}
-               <option value="{$issue_tracker.id}" 
-                 {if $issue_tracker.id == $gui->issue_tracker_id} selected {/if} 
+               <option value="{$issue_tracker.id}"
+                 {if $issue_tracker.id == $gui->issue_tracker_id} selected {/if}
                >
                {$issue_tracker.verbose|escape}</option>
              {/foreach}
@@ -231,7 +240,7 @@ manageTracker('code_tracker_id','code_tracker_enabled');">
         <tr>
           <td></td>
           <td>
-            <input type="checkbox" id="code_tracker_enabled"
+            <input class="form-check-input" type="checkbox" id="code_tracker_enabled"
                    name="code_tracker_enabled" {if $gui->code_tracker_enabled == 1} checked="checked" {/if} />
             {$labels.th_active}
           </td>
@@ -244,8 +253,8 @@ manageTracker('code_tracker_id','code_tracker_enabled');">
              onchange="manageTracker('code_tracker_id','code_tracker_enabled');">
              <option value="0">&nbsp;</option>
              {foreach item=code_tracker from=$gui->codeTrackers}
-               <option value="{$code_tracker.id}" 
-                 {if $code_tracker.id == $gui->code_tracker_id} selected {/if} 
+               <option value="{$code_tracker.id}"
+                 {if $code_tracker.id == $gui->code_tracker_id} selected {/if}
                >
                {$code_tracker.verbose|escape}</option>
              {/foreach}
@@ -253,11 +262,11 @@ manageTracker('code_tracker_id','code_tracker_enabled');">
           </td>
         </tr>
       {/if}
-         
+
       {*
       <tr>
         <td>{$labels.testproject_reqmgr_integration}</td><td></td>
-      </tr>                         
+      </tr>
       {if $gui->reqMgrSystems == ''}
       <tr>
         <td></td>
@@ -279,15 +288,15 @@ manageTracker('code_tracker_id','code_tracker_enabled');">
              <select name="reqmgrsystem_id" id="reqmgrsystem_id">
              <option value="0">&nbsp;</option>
              {foreach item=rms from=$gui->reqMgrSystems}
-               <option value="{$rms.id}" 
-                 {if $rms.id == $gui->reqmgrsystem_id} selected {/if} 
+               <option value="{$rms.id}"
+                 {if $rms.id == $gui->reqmgrsystem_id} selected {/if}
                >
                {$rms.verbose|escape}</option>
              {/foreach}
              </select>
           </td>
       </tr>
-      {/if}  
+      {/if}
       *}
 
       <tr>
@@ -295,18 +304,18 @@ manageTracker('code_tracker_id','code_tracker_enabled');">
       </tr>
       <tr>
         <td></td><td>
-            <input type="checkbox" name="active" {if $gui->active eq 1} checked="checked" {/if} />
+            <input class="form-check-input" type="checkbox" name="active" {if $gui->active eq 1} checked="checked" {/if} />
             {$labels.th_active}
           </td>
           </tr>
 
       <tr>
         <td></td><td>
-            <input type="checkbox" name="is_public" {if $gui->is_public eq 1} checked="checked"  {/if} />
+            <input class="form-check-input" type="checkbox" name="is_public" {if $gui->is_public eq 1} checked="checked"  {/if} />
             {$labels.public}
           </td>
       </tr>
-      
+
       {if $gui->api_key != ''}
       <tr>
         <td>{$labels.api_key}</td>
@@ -319,11 +328,12 @@ manageTracker('code_tracker_id','code_tracker_enabled');">
       <tr><td cols="2">
         {if $gui->canManage == "yes"}
         <div class="groupBtn">
-          <input type="hidden" name="doAction" value="{$doActionValue}" />
-          <input type="hidden" name="tprojectID" value="{$gui->tprojectID}" />
-          <input type="submit" name="doActionButton" value="{$buttonValue}" />
-          <input type="button" name="go_back" value="{$labels.cancel}" 
+          <input class="btn btn-primary" type="hidden" name="doAction" value="{$doActionValue}" />
+          <input class="btn btn-primary" type="hidden" name="tprojectID" value="{$gui->tprojectID}" />
+          <input class="btn btn-primary" type="submit" name="doActionButton" value="{$buttonValue}"/>
+          <input class="btn btn-primary" type="button" name="go_back" value="{$labels.cancel}"
                  onclick="javascript: location.href=fRoot+'lib/project/projectView.php';" />
+
         </div>
       {/if}
       </td></tr>
