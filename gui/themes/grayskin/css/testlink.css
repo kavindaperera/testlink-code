@@ -246,6 +246,7 @@ span, div {
 }
 
 h1, h1.title {
+    background: #f0f0f0;
 	padding-left: 15px;
     line-height: 30px;
 	text-align: left;
@@ -317,8 +318,8 @@ div.menu_title .bold {
 
 div.menu_title a img {
     display: block;
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     float: left;
     margin: 5px;
 }
@@ -353,8 +354,8 @@ div.menu_bar a {
 div.menu_bar a img,
 div.menu_bar .clickable {
     display: block;
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
 }
 
 div.menu_bar input,
@@ -505,6 +506,7 @@ div.tree {
 }
 
 div.groupBtn {
+    padding: 5px;
     margin-top: 20px;
     text-align: center;
 }
@@ -874,6 +876,22 @@ span.unselected a, span.unselected a:visited {
 /* ***** Common ********************* */
 table.common {
 	min-width: 50%;
+    border: 1px solid #e3e3e3 !important;
+}
+
+table.common th {
+    color: #555;
+    background-color: #f0f0f0;
+    border: 1px solid #e3e3e3 !important;
+}
+
+table.common td {
+    border: 1px solid #e3e3e3 !important;
+}
+
+table.common img {
+    width: 20px;
+    height: 20px;
 }
 
 table th {
@@ -881,6 +899,14 @@ table th {
   	font-weight: bold;
     line-height: 16px;
     padding: 7px 10px;
+}
+
+table.simple th {
+    border: 1px solid #e3e3e3 !important;
+}
+
+table.simple td {
+    border: 1px solid #e3e3e3 !important;
 }
 
 table td {
@@ -934,6 +960,8 @@ table.common caption, table.smallGrey caption {
 /* ***** Simple Table (often used to show data) ***************** */
 table.simple, table.simple_tableruler {
 	width:			100%;
+    border: 1px solid #e3e3e3 !important;
+
 }
 
 table.simple caption, table.simple_tableruler caption{
@@ -943,13 +971,41 @@ table.simple caption, table.simple_tableruler caption{
 	font-weight:    bold;
 }
 
+table.simple td[id*='inline_img_container'] img {
+    width: 80%;
+    height: auto !important;
+}
+
+table.simple_tableruler td {
+    border: 1px solid #e3e3e3 !important;
+}
+
+
+table.simple_tableruler td img {
+    width: 20px;
+    height: 20px;
+}
+
 table.simple_tableruler tr:hover{
     background-color: #CDDEF3 !important;
+}
+
+table.simple_tableruler th {
+    color: #555;
+    background-color: #f0f0f0;
+    border: 1px solid #e3e3e3 !important;
 }
 
 table.tableruler tbody tr:hover{
     background-color: #FFF !important;
 }
+
+
+table td img {
+    width: 20px;
+    height: 20px;
+}
+
 
 /* Used for filters and options settings */
 table.smallGrey {
@@ -1049,6 +1105,16 @@ table.test_exec {
 .table {
   font-size: 12px;
   width: 100%;
+}
+
+.clickable_icon img {
+    width: 20px;
+    height: 20px;
+}
+
+.clickable_icon input[type='image'] {
+    width: 20px;
+    height: 20px;
 }
 
 .table .thead-dark th,
@@ -1453,6 +1519,8 @@ th.testlink, td.testlink, tr.testlink td {
 .clickable
 {
 	cursor:pointer;
+    width: 20px;
+    height: 20px;
 }
 
 /*
@@ -1724,6 +1792,17 @@ div.form-border {
 .x-progress-wrap {
     height: 30px;
     line-height: 30px;
+}
+
+.x-action-col-cell  img.normal_user{
+    height: 20px !important;
+    width: 20px !important;
+    background-size: cover;
+}
+
+.x-grid3-cell-inner img {
+    height: 20px !important;
+    width: 20px !important;
 }
 
 .nav-pills>li.active>a,
