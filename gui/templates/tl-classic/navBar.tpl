@@ -36,7 +36,9 @@ title bar + menu
 {if $gui->TestProjects != ""}
   <div style="display: inline; float: right;">
     <form style="display:inline" name="productForm" action="lib/general/navBar.php?viewer={$gui->viewer}" method="get">
-       {$labels.testproject}
+       <div style="display: inline-block;padding-top: 6px;">
+         {$labels.testproject}
+       </div>
       <select style="font-size: 100%;position:relative; top:-1px;" name="testproject" onchange="this.form.submit();">
           {foreach key=tproject_id item=tproject_name from=$gui->TestProjects}
           <option value="{$tproject_id}" title="{$tproject_name|escape}"
@@ -53,7 +55,7 @@ title bar + menu
   {if $gui->grants->view_testcase_spec == "yes"}
     <form style="display:inline" target="mainframe" name="searchTC" id="searchTC"
           action="lib/testcases/archiveData.php" method="get">
-    <input style="font-size: 100%; position:relative; top:-1px;" type="text" size="{$gui->searchSize}"
+    <input style="font-size: 100%;position:relative;top:-1px;margin-top: 5px;" type="text" size="{$gui->searchSize}"
            title="{$labels.search_testcase}" name="targetTestCase" value="{$gui->tcasePrefix}" />
 
       {* useful to avoid a call to method to get test case prefix in called page *}
@@ -73,14 +75,17 @@ title bar + menu
   {if $gui->grants->view_testcase_spec == "yes"}
     <form style="display:inline" target="mainframe" name="fullTextSearch" id="fullTextSearch"
           action="lib/search/searchMgmt.php" method="post">
-    <input type="hidden" name="caller" value="navBar">
-    <input type="hidden" name="tproject_id" value="{$gui->tproject_id}">
+      <input type="hidden" name="caller" value="navBar">
+      <input type="hidden" name="tproject_id" value="{$gui->tproject_id}">
 
-    <input style="font-size: 100%; position:relative; top:-1px;" type="text" size="50"
-           title="{$labels.full_text_search}" name="target" value=""/>
-    <style>
-    </style>
+      <input style="font-size: 100%;position:relative;top:-1px;margin-top: 5px;" type="text" size="50"
+             title="{$labels.full_text_search}" name="target" value="" />
 
+      <img src="{$tlImages.magnifier}"
+           title="{$labels.full_text_search}" alt="{$labels.full_text_search}"
+           onclick="jQuery('#fullTextSearch').submit()" class="clickable"
+           style="position:relative; top:2px;" />
+    </form>
   {/if}
 
 {/if}
